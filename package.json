@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next",
+    "refresh": "rm -rf ./.next && rm -rf ./node_modules && yarn && yarn dev",
     "build": "next build",
     "start": "next start",
     "setup": "node ./lib/setup.js"
