@@ -1,40 +1,40 @@
-import Image from 'next/image'
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-import { BLOCKS } from '@contentful/rich-text-types'
+import Image from 'next/image';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { BLOCKS } from '@contentful/rich-text-types';
 
 interface Asset {
   sys: {
-    id: string
-  }
-  url: string
-  description: string
+    id: string;
+  };
+  url: string;
+  description: string;
 }
 
 interface AssetLink {
-  block: Asset[]
+  block: Asset[];
 }
 
 interface Content {
-  json: any
+  json: any;
   links: {
-    assets: AssetLink
-  }
+    assets: AssetLink;
+  };
 }
 
 function RichTextAsset({
   id,
   assets,
 }: {
-  id: string
-  assets: Asset[] | undefined
+  id: string;
+  assets: Asset[] | undefined;
 }) {
-  const asset = assets?.find((asset) => asset.sys.id === id)
+  const asset = assets?.find((asset) => asset.sys.id === id);
 
   if (asset?.url) {
-    return <Image src={asset.url} layout="fill" alt={asset.description} />
+    return <Image src={asset.url} layout="fill" alt={asset.description} />;
   }
 
-  return null
+  return null;
 }
 
 export function Markdown({ content }: { content: Content }) {
@@ -46,6 +46,12 @@ export function Markdown({ content }: { content: Content }) {
           assets={content.links.assets.block}
         />
       ),
+      [BLOCKS.PARAGRAPH]: (node: any, children: any) => (
+        <p className="text-slate-300">{children}</p>
+      ),
+      [BLOCKS.HEADING_1]: (node: any, children: any) => (
+        <h1 className="text-slate-300">{children}</h1>
+      ),
     },
-  })
+  });
 }
