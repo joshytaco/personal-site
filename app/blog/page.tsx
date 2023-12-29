@@ -35,24 +35,24 @@ function HeroPost({
   slug: string;
 }) {
   return (
-    <section>
+    <section className="mb-5">
       <div className="mb-8 md:mb-16">
         <CoverImage title={title} slug={slug} url={coverImage.url} />
       </div>
-      <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 mb-20 md:mb-28">
-        <div>
-          <h3 className="mb-4 text-4xl lg:text-6xl leading-tight">
+      <div className="flex w-full flex-col md:flex-row gap-8 md:gap-x-16 lg:gap-x-8 mb-2">
+        <div className="flex flex-1 flex-col gap-4 md:gap-8 justify-between">
+          <h3 className="text-4xl lg:text-6xl leading-tight">
             <Link href={`/posts/${slug}`} className="hover:underline">
               {title}
             </Link>
           </h3>
+          <p className="text-lg leading-relaxed">{excerpt}</p>
+        </div>
+        <div className="flex flex-1 flex-col gap-4 md:gap-8 justify-between">
+          {author && <Avatar name={author.name} picture={author.picture} />}
           <div className="mb-4 md:mb-0 text-lg">
             <Date dateString={date} />
           </div>
-        </div>
-        <div>
-          <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
-          {author && <Avatar name={author.name} picture={author.picture} />}
         </div>
       </div>
     </section>
@@ -78,7 +78,7 @@ export default async function Page() {
           excerpt={heroPost.excerpt}
         />
       )}
-      <MoreStories morePosts={morePosts} />
+      {morePosts.length > 1 && <MoreStories morePosts={morePosts} />}
     </div>
   );
 }
