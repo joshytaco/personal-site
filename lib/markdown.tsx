@@ -47,10 +47,10 @@ export function Markdown({ content }: { content: Content }) {
         />
       ),
       [BLOCKS.PARAGRAPH]: (node: any, children: any) => (
-        <p className="text-slate-300">{children}</p>
+        <p className="text-black">{children}</p>
       ),
       [BLOCKS.HEADING_1]: (node: any, children: any) => (
-        <h1 className="text-slate-300">{children}</h1>
+        <h1 className="text-black">{children}</h1>
       ),
     },
   });
