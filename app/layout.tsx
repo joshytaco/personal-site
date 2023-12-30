@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 import { Inter } from 'next/font/google';
 
@@ -56,6 +57,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
         </section>
+        <Analytics />
       </body>
     </html>
   );
